@@ -18,13 +18,9 @@
     <div class="title">Học tiếng anh cùng bé!</div>
     <div class="wrapper" id="wrapper">
       <div id="loading"></div>
-      <button
-        class="upload-btn"
-        onclick="document.getElementById('fileInput').click()"
-      >
+      <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
         Tải dữ liệu lên
       </button>
-      <div class="grid-container" id="grid-container"></div>
     </div>
 
     <script
@@ -38,12 +34,12 @@
         const text = await e.target.files[0].text();
         const questions = text.split("\n");
 
-        const wrapper = document.getElementById("grid-container");
+        const wrapper = document.getElementById("wrapper");
         wrapper.innerHTML = "";
 
         questions.forEach((line, index) => {
           if (line.trim()) {
-            wrapper.appendChild(createItemGrid(line, index));
+            wrapper.appendChild(createItem(line, index));
           }
         });
         document.getElementById("loading").className = "";
@@ -57,13 +53,6 @@
         msg.rate = 1;
         msg.pitch = 1;
         speechSynthesis.speak(msg);
-      }
-
-      function createItemGrid(text, index) {
-        const container = document.createElement("div");
-        container.innerHTML = `${index}`;
-        container.onclick = () => speak(text);
-        return container;
       }
 
       function createItem(text, index) {
