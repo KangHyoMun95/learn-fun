@@ -19,12 +19,14 @@
     <div class="wrapper" id="wrapper">
       <div id="loading"></div>
       <button
+        id="upload-btn"
         class="upload-btn"
         onclick="document.getElementById('fileInput').click()"
       >
         Tải dữ liệu lên
       </button>
-      <div class="grid-container" id="grid-container"></div>
+      <div class="grid-container" id="grid-container">
+      </div>
     </div>
 
     <script
@@ -48,6 +50,7 @@
         });
         document.getElementById("loading").className = "";
         document.getElementById("fileInput").style.display = "none";
+        document.getElementById("upload-btn").style.display = "none";
       };
       function speak(text) {
         console.log({ text });
@@ -56,6 +59,10 @@
         msg.lang = "en-US";
         msg.rate = 1;
         msg.pitch = 1;
+
+        const voices = speechSynthesis.getVoices();
+        msg.voice = voices.find(v => v.lang === "en-US") || voices[0];
+
         speechSynthesis.speak(msg);
       }
 

@@ -121,6 +121,8 @@ body::-webkit-scrollbar {
   aspect-ratio: 1 / 1;
 
   border: 1px solid #000;
+  cursor: pointer;
+  user-select: none;
 }
 
 @keyframes spin {
