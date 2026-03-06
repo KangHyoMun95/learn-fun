@@ -5,7 +5,7 @@ body {
   -ms-overflow-style: none; /* IE / Edge cũ */
 
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 body::-webkit-scrollbar {
@@ -16,6 +16,8 @@ body::-webkit-scrollbar {
   padding-top: 1rem;
   text-align: center;
   font-size: 3rem;
+
+  margin-bottom: 2rem;
 }
 
 .file-container {
@@ -31,6 +33,8 @@ body::-webkit-scrollbar {
   align-items: center;
 
   gap: 0.5rem;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .container {
