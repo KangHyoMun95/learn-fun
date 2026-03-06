@@ -60,9 +60,6 @@
         msg.rate = 1;
         msg.pitch = 1;
 
-        const voices = speechSynthesis.getVoices();
-        msg.voice = voices.find(v => v.lang === "en-US") || voices[0];
-
         speechSynthesis.speak(msg);
       }
 
