@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,9 +16,29 @@
   <body>
     <input type="file" id="fileInput" hidden />
     <div class="title">Học tiếng anh cùng bé!</div>
+    <div class="rate-container">
+      <div>Độ dài:</div>
+      <div style="width: 5px"></div>
+      <input
+        id="maxWidth"
+        type="range"
+        min="200"
+        max="750"
+        step="50"
+        value="550"
+      />
+    </div>
+    <div class="rate-container">
+      <div>Cỡ chữ:</div>
+      <div style="width: 5px"></div>
+      <input id="fontSize" type="range" min="10" max="20" step="1" value="16" />
+    </div>
     <div class="wrapper" id="wrapper">
       <div id="loading"></div>
-      <button class="upload-btn" onclick="document.getElementById('fileInput').click()">
+      <button
+        class="upload-btn"
+        onclick="document.getElementById('fileInput').click()"
+      >
         Tải dữ liệu lên
       </button>
     </div>
@@ -29,6 +49,20 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      document.getElementById("maxWidth").onchange = (e) => {
+        const value = e.target.value;
+        const els = document.getElementsByClassName("container");
+        for (const el of els) {
+          el.style.maxWidth = `${value}px`;
+        }
+      };
+      document.getElementById("fontSize").onchange = (e) => {
+        const value = e.target.value;
+        const els = document.getElementsByClassName("content");
+        for (const el of els) {
+          el.style.fontSize = `${value}px`;
+        }
+      };
       document.getElementById("fileInput").onchange = async (e) => {
         document.getElementById("loading").classList.add("loading");
         const text = await e.target.files[0].text();
@@ -46,7 +80,6 @@
         document.getElementById("fileInput").style.display = "none";
       };
       function speak(text) {
-        console.log({ text });
         speechSynthesis.cancel();
         const msg = new SpeechSynthesisUtterance(text);
         msg.lang = "en-US";
@@ -54,7 +87,7 @@
         msg.pitch = 1;
 
         const voices = speechSynthesis.getVoices();
-        msg.voice = voices.find(v => v.lang === "en-US") || voices[0];
+        msg.voice = voices.find((v) => v.lang === "en-US") || voices[0];
 
         speechSynthesis.speak(msg);
       }
